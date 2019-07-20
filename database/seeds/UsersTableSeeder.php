@@ -11,11 +11,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $username = 'admin';
-        $users[] = [
-            'name' = $username,
-            'password' = bcrypt('12345'),
-            'email' = str_random(5) . '@m.r',
-        ]
+        //
     }
 }
