@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'blog', 'namespace' => 'Blog'], function () {
+    Route::resource('posts', 'PostController')->names('blog.posts');
+});
