@@ -15,9 +15,9 @@ class CategoryController extends BaseController
     public function index()
     {
 
-        $paginator = BlogCategory::paginate(5);
+        $paginator = BlogCategory::paginate(15);
 
-        return view('blog.admin.category.index', compact($paginator));
+        return view('blog.admin.category.index', ['paginator' => $paginator]);
     }
 
     /**
@@ -49,7 +49,10 @@ class CategoryController extends BaseController
      */
     public function edit($id)
     {
-        //
+        $items = BlogCategory::findOrFail($id);
+        $categoryList = BlogCategory::all();
+
+        return view('blog.admin.category.edit', compact(['items', 'categoryList']));
     }
 
     /**
