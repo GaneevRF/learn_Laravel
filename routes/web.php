@@ -24,7 +24,6 @@ Route::group(['prefix' => 'blog', 'namespace' => 'Blog'], function () {
 
 //Админка
 
-
 Route::group(['prefix' => 'admin/blog', 'namespace' => 'Blog\Admin'], function (){
     Route::resource('categories', 'CategoryController')
         ->only(['index', 'edit', 'update', 'create', 'store'])
