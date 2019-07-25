@@ -1,5 +1,6 @@
 @php
     /** @var \App\Models\BlogCategory $item */
+    /** @var \ $item */
 @endphp
 <div class="row justify-content-center">
     <div class="col-md-12">
@@ -40,9 +41,9 @@
                                    class="form-control"
                                    placeholder="Выберите категорию"
                                    required>
-                                @foreach($categotyList as $categoryOption)
+                                @foreach($categoryList as $categoryOption)
                                     <option value="{{ $categoryOption->id }}"
-                                            @if($categoryOption->id == $categoryOption->parent_id) selected @endif>
+                                        @if($categoryOption->id == $categoryOption->parent_id) selected @endif>
                                         {{ $categoryOption->id }} . {{ $categoryOption->title }}
                                     </option>
                                 @endforeach
@@ -50,15 +51,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="slug">Идентификатор</label>
+                            <label for="description">Описание</label>
                             <textarea id="description"
                                    name="description"
                                    class="form-control"
                                       rows="3">
-                                {{ $item->description }}
+                                {{ old('description', $item->description) }}
                             </textarea>
                         </div>
-
                     </div>
                 </div>
             </div>
