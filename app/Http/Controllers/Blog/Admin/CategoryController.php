@@ -27,7 +27,10 @@ class CategoryController extends BaseController
      */
     public function create()
     {
-        //
+        $item = new BlogCategory();
+        $categoryList = BlogCategory::all();
+
+        return view('blog.admin.category.edit', ['item' => $item, 'categoryList' => $categoryList]);
     }
 
     /**
@@ -36,9 +39,26 @@ class CategoryController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogCategoryUpdateRequest $request)
     {
-        //
+        $data = $request->input();
+
+        if(empty($data['slug'])){
+            $data['slug'] = str_slug($data['title']);
+        }
+
+        $item = (new BlogCategory())->create($data);
+
+        if(!$item){
+            return back()
+                ->withErrors(['msg' => 'Ошибка сохранения'])
+                ->withInput();
+        }
+
+        return redirect()
+            ->route('blog.admin.categories.edit', $item->id)
+            ->with(['success' => 'Успешно сохранено']);
+
     }
 
     /**
